@@ -424,7 +424,7 @@ Bool DMXAddScreen(Display *dpy, const char *displayName, unsigned int mask,
     if (length) {
         char *buffer       = Xmalloc(paddedLength);
         memset(buffer, 0, paddedLength);
-        strcpy(buffer, displayName);
+        memcpy(buffer, displayName, length);
         Data32(dpy, buffer, paddedLength);
         Xfree(buffer);
     }
