@@ -730,7 +730,7 @@ Bool DMXAddInput(Display *dpy, unsigned int mask, DMXInputAttributes *attr,
     if (length) {
         char *buffer       = Xmalloc(paddedLength);
         memset(buffer, 0, paddedLength);
-        strcpy(buffer, attr->name);
+        memcpy(buffer, attr->name, paddedLength);
         Data32(dpy, buffer, paddedLength);
         Xfree(buffer);
     }
