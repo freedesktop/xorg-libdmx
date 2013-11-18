@@ -86,19 +86,6 @@ static XEXT_GENERATE_FIND_DISPLAY(find_display, dmx_extension_info,
 
 static XEXT_GENERATE_CLOSE_DISPLAY(close_display, dmx_extension_info)
 
-#ifndef HAVE__XEATDATAWORDS
-#include <X11/Xmd.h>  /* for LONG64 on 64-bit platforms */
-
-static inline void _XEatDataWords(Display *dpy, unsigned long n)
-{
-# ifndef LONG64
-    if (n >= (ULONG_MAX >> 2))
-        _XIOError(dpy);
-# endif
-    _XEatData (dpy, n << 2);
-}
-#endif
-
 
 /*****************************************************************************
  *                                                                           *
