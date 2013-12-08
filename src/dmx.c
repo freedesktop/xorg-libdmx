@@ -440,8 +440,7 @@ Bool DMXAddScreen(Display *dpy, const char *displayName, unsigned int mask,
     req->length           += _DMXDumpScreenAttributes(dpy, mask, attr);
 
     if (length) {
-        char *buffer       = Xmalloc(paddedLength);
-        memset(buffer, 0, paddedLength);
+        char *buffer       = Xcalloc(paddedLength, 1);
         memcpy(buffer, displayName, length);
         Data32(dpy, buffer, paddedLength);
         Xfree(buffer);
@@ -780,8 +779,7 @@ Bool DMXAddInput(Display *dpy, unsigned int mask, DMXInputAttributes *attr,
     req->length           += _DMXDumpInputAttributes(dpy, mask, attr);
 
     if (length) {
-        char *buffer       = Xmalloc(paddedLength);
-        memset(buffer, 0, paddedLength);
+        char *buffer       = Xcalloc(paddedLength, 1);
         memcpy(buffer, attr->name, paddedLength);
         Data32(dpy, buffer, paddedLength);
         Xfree(buffer);
